@@ -41,11 +41,20 @@ jobs:
     steps:
     - name: Checkout source code
       uses: actions/checkout@master
+
+    - name: Set up Node.js
+      uses: actions/setup-node@master
       with:
         node-version: 14.x
 
     - name: Install dependencies
       run: yarn install
+      
+    - name: Test unit
+      run: yarn test:unit
+
+    - name: Build page
+      run: yarn build
       env:
         NODE_ENV: production
     
